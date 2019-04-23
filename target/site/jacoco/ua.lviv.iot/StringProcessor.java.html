@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StringProcessor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java-labs</a> &gt; <a href="index.source.html" class="el_package">ua.lviv.iot</a> &gt; <span class="el_source">StringProcessor.java</span></div><h1>StringProcessor.java</h1><pre class="source lang-java linenums">package ua.lviv.iot;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class StringProcessor {
+    private String line;
+    private List&lt;String&gt; list;
+
+<span class="fc" id="L15">    public StringProcessor(){}</span>
+
+<span class="nc" id="L17">    public StringProcessor(String line, List&lt;String&gt; list) {</span>
+<span class="nc" id="L18">        this.line = line;</span>
+<span class="nc" id="L19">        this.list = list;</span>
+<span class="nc" id="L20">    }</span>
+
+    public String getLine() {
+<span class="fc" id="L23">        return line;</span>
+    }
+
+    public List&lt;String&gt; getList() {
+<span class="nc" id="L27">        return list;</span>
+    }
+
+    public void setLine(String line) {
+<span class="fc" id="L31">        this.line = line;</span>
+<span class="fc" id="L32">    }</span>
+
+    public void setList(List&lt;String&gt; list) {
+<span class="nc" id="L35">        this.list = list;</span>
+<span class="nc" id="L36">    }</span>
+
+    public static String readInputText() throws IOException {
+<span class="nc" id="L39">        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));</span>
+<span class="nc" id="L40">        System.out.println(&quot;Enter String&quot;);</span>
+<span class="nc" id="L41">        return br.readLine();</span>
+    }
+
+    public final List&lt;String&gt; findMatch() {
+<span class="fc" id="L45">        list = new LinkedList&lt;String&gt;();</span>
+<span class="fc" id="L46">        Pattern wordsWithMission = Pattern.compile(&quot;\\b[S][T][S].\\d+\\b&quot;);</span>
+<span class="fc" id="L47">        Matcher matcher = wordsWithMission.matcher(this.getLine());</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        while (matcher.find()) {</span>
+<span class="fc" id="L49">            list.add(matcher.group());</span>
+        }
+<span class="fc" id="L51">        return list;</span>
+    }
+
+    public final void showResults() {
+<span class="fc" id="L55">        System.out.println(&quot;----------------------------------------------------------&quot;);</span>
+<span class="fc" id="L56">        System.out.println(&quot;Show missions:\n&quot;);</span>
+
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (list.isEmpty()) {</span>
+<span class="fc" id="L59">            System.out.println(&quot;There is no matches found :c &quot;);</span>
+        } else {
+<span class="fc" id="L61">            System.out.println(&quot;Result: &quot; + list);</span>
+        }
+<span class="fc" id="L63">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
